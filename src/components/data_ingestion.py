@@ -1,4 +1,5 @@
-# contains code to read some data from any databse or from elsewhrere
+# contains code to read some data from any databse or from elsewhrere and then we do train test split and making their folders also so 
+#that we access them easily 
 # it play imp role when u working in team u reqire data collecting data from various sources 
 import os 
 import sys 
@@ -7,6 +8,9 @@ from src.logger import logging
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 #we defining this function so that we are giving input to datainegestion config and it saves our data -train test and data  in artifacts folder 
@@ -48,4 +52,8 @@ class DataIngestion: # when called this class uper values get saved in this belo
 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data= obj.initiate_data_ingestion()  # returning train test 
+
+    data_transformation=DataTransformation()# calls datatransformation class in data_transformation.py
+    data_transformation.initiate_data_transformation(train_data,test_data)#and from that class it calls initiate_data_transformation() function
+    #we combined here data ingestion and data transformation 

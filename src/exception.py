@@ -12,7 +12,8 @@ def error_message_detail(error,error_details:sys):
     return error_message
     
 
-# print the errormsg
+# print the errormsg u need this class in every code
+
 class CustomException(Exception):
     def __init__(self,error_message,error_details:sys):
         super().__init__(error_message)
