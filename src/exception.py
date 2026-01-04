@@ -1,7 +1,7 @@
 # for exception handeling 
 import sys 
-import logging
 # sys =>The sys module in Python provides various functions and variables that are used to manipulate different parts of the Python runtime environmenta It allows operating on the interpreter as it provides access to the variables and functions that interact strongly with the interpreter.
+from src.logger import logging
 #23 May 2022
 def error_message_detail(error,error_details:sys):
     _,_,exc_tb=error_details.exc_info()  # tell in which line ,code the erro occured and get stored in this variable 
@@ -21,4 +21,3 @@ class CustomException(Exception):
     def __str__(self):
         return self.error_message
   
-    
