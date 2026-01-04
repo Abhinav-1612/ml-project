@@ -12,6 +12,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainingConfig
+from src.components.model_trainer import ModelTrainer
+
 @dataclass
 #we defining this function so that we are giving input to datainegestion config and it saves our data -train test and data  in artifacts folder 
 class DataIngestionConfig:
@@ -55,5 +58,8 @@ if __name__=="__main__":
     train_data,test_data= obj.initiate_data_ingestion()  # returning train test 
 
     data_transformation=DataTransformation()# calls datatransformation class in data_transformation.py
-    data_transformation.initiate_data_transformation(train_data,test_data)#and from that class it calls initiate_data_transformation() function
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)#and from that class it calls initiate_data_transformation() function
     #we combined here data ingestion and data transformation 
+
+    Modeltrainer=ModelTrainer()
+    print(Modeltrainer.initiate_model_trainer(train_arr,test_arr))  #print r2 score
